@@ -171,6 +171,9 @@ public class TestJUnit_1 {
 
     //ITERATIVE FORM
     public static double POWER_ITERATIVE(double b, int n) {
+        if (b == 0 && n == 0) {
+            throw new ArithmeticException("INDETERMINATE FORM");
+        }
         double result = 1.0;
         for (int i = 31 - Integer.numberOfLeadingZeros(n); i >= 0; --i) {
             result *= result;
