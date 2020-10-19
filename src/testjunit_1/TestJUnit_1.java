@@ -142,22 +142,22 @@ public class TestJUnit_1 {
      */
     //RECURSION FORM
     public static double POWER_RECURSIVE(double b, int n) {
-        if (b == 0 && n == 0) {
+        if (b == 0.0 && n == 0) {
             throw new ArithmeticException("INDETERMINATE FORM");
         } else {
             if (n > 0) {
                 return AUX_POWER(b, n);
             }
             if (n < 0) {
-                return 1 / AUX_POWER(b, n);
+                return 1 / (AUX_POWER(b, n * - 1) * -1);
             }
-            return 1;
+            return 1.0;
         }
     }
 
     private static double AUX_POWER(double b, int n) {
         if (n == 0) {
-            return 1;
+            return 1.0;
         }
         if (EVEN_FIRST_FORM(n)) {
             return CUAD(AUX_POWER(b, n / 2));
@@ -171,9 +171,19 @@ public class TestJUnit_1 {
 
     //ITERATIVE FORM
     public static double POWER_ITERATIVE(double b, int n) {
-        if (b == 0 && n == 0) {
+        if (b == 0.0 && n == 0) {
             throw new ArithmeticException("INDETERMINATE FORM");
+        } else {
+            if (n > 0) {
+                return AUX_POWER_ITERATIVE(b, n);
+            } else if (n < 0) {
+                return 1 / (AUX_POWER_ITERATIVE(b, n * -1) * -1);
+            }
         }
+        return 1.0;
+    }
+
+    private static double AUX_POWER_ITERATIVE(double b, int n) {
         double result = 1.0;
         for (int i = 31 - Integer.numberOfLeadingZeros(n); i >= 0; --i) {
             result *= result;
@@ -272,15 +282,6 @@ public class TestJUnit_1 {
     }
 
     public static void main(String[] args) throws Exception {
-        int x[] = {1, 4, 6, 10, 11, 15};
-        int i = 0, j = 0;
-        Random ran = new Random();
-        while (i++ <= 9) {
-            j = ran.nextInt(90);
-            System.out.printf("%d, %d \n", FIBONACCI_RECURSIVE(-j), -j);
-        }
-        System.out.println("hola mundo!");
-        //System.out.println(FIBONACCI_RECURSIVE(-500));
     }
 
 }
