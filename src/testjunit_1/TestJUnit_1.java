@@ -4,6 +4,7 @@
  */
 package testjunit_1;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class TestJUnit_1 {
@@ -232,25 +233,33 @@ public class TestJUnit_1 {
      * TEST #6
      * QUICKSORT.
      */
-    public static void QUICKSORT(int[] array) {
-        AUX_QUICKSORT(array, 0, array.length - 1);
+    public static void QUICKSORT(int[] array, boolean asc) {
+        AUX_QUICKSORT(array, 0, array.length - 1, asc);
     }
 
-    private static void AUX_QUICKSORT(int[] array, int low, int high) {
+    private static void AUX_QUICKSORT(int[] array, int low, int high, boolean asc) {
         if (low < high) {
-            int p = PARTITION(array, low, high);
-            AUX_QUICKSORT(array, low, p - 1);
-            AUX_QUICKSORT(array, p + 1, high);
+            int p = PARTITION(array, low, high, asc);
+            AUX_QUICKSORT(array, low, p - 1, asc);
+            AUX_QUICKSORT(array, p + 1, high, asc);
         }
     }
 
-    private static int PARTITION(int[] array, int low, int high) {
+    private static int PARTITION(int[] array, int low, int high, boolean asc) {
         int pivote = array[high], i = low - 1;
         for (int j = low; j <= high - 1; j++) {
-            if (array[j] < pivote) {
-                int c = array[++i];
-                array[i] = array[j];
-                array[j] = c;
+            if (asc) {
+                if (array[j] < pivote) {
+                    int c = array[++i];
+                    array[i] = array[j];
+                    array[j] = c;
+                }
+            } else {
+                if (array[j] > pivote) {
+                    int c = array[++i];
+                    array[i] = array[j];
+                    array[j] = c;
+                }
             }
         }
         int c = array[++i];
@@ -281,7 +290,31 @@ public class TestJUnit_1 {
         return -1;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        Object array[] = {2711, 1171, 7474, 6666, 6397, 7828, 5522, 2923, 2800, 4538, 8978, 9408, 4612, 7682, 4031, 2188, 1105, 57, 5074, 4538, 8107, 8815, 2918};
+        int array2[] = {1604, 3735, 9955, 8615, 3234, 8898, 7300, 3130, 5018, 8356, 262, 3159, 5250, 229, 7009, 3784, 2068, 442, 7822, 9961, 6566, 3958, 3627, 1607, 4727, 7579, 4308, 259, 4808, 6201, 1764, 2869, 9588, 6215, 1879, 2349, 606, 415, 3243, 6709, 6198, 6850, 2323, 8995, 1399, 1869, 4663, 9355, 4192, 4100, 1292, 6736, 8349, 2507, 715};
+        int array3[] = {299, 4428, 9778, 305, 8297, 8661, 4431, 7386, 8543, 9109, 5799, 7774, 9838, 9700, 6184, 8936, 4924, 7833, 2609, 7302, 356, 7530, 6493, 8973, 810, 3058, 1881, 7226, 4984, 4288, 4676, 9811, 6057, 6412, 8722, 2924, 6097, 8116, 1709, 8166, 40, 3893, 1720};
+        int array4[] = {0, 25, 34, 30, 1, 21, 27, 4, 38, 33, 8, 3, 41, 38, 1, 42, 30, 25, 49, 32, 8, 6, 28, 26, 26, 39, 9, 28, 8, 26, 45, 45, 20, 9, 47, 28};
+        int array5[] = {48, 0, 35, 25, 0, 44, 41, 29, 29, 18, 6, 47, 27, 45, 28, 23, 32, 33, 9, 40, 34, 28, 26, 8, 47, 15, 23, 22, 22, 22, 45, 28, 41, 24, 43, 3, 23, 34, 48, 24, 36, 6, 21, 48, 33};
+
+        
+                int[] arrayint = new int[array.length];
+        for(int i = 0; i < array.length; i++) {
+            arrayint[i] = ((Integer)array[i]);
+        }
+
+        QUICKSORT(arrayint, true);
+        QUICKSORT(array2, true);
+        QUICKSORT(array3, false);
+        QUICKSORT(array4, true);
+        QUICKSORT(array5, false);
+
+        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array2));
+        System.out.println(Arrays.toString(array3));
+        System.out.println(Arrays.toString(array4));
+        System.out.println(Arrays.toString(array5));
+
     }
 
 }

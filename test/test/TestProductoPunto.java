@@ -18,10 +18,10 @@ public class TestProductoPunto {
     @Parameterized.Parameters
     public static Iterable<Object[]> INIT() {
         return Arrays.asList(new Object[][]{
-            {new double[]{1.2, 1.9, 0.5}, new double[]{0.9, 9.1, 1.5}, 19.12},
-            {new double[]{1, 5, 10, 11}, new double[]{1, 4, 2, 10}, 151},
-            {new double[]{0.4453, 3.1415}, new double[]{0.141516, 2.14567834}, 6.80366558},
-            {new double[]{1, 4, 9}, new double[]{1, 2, 3}, 36.0}
+            {new Object[]{1.2, 1.9, 0.5}, new Object[]{0.9, 9.1, 1.5}, 19.12},
+            {new Object[]{1, 5, 10, 11}, new Object[]{1, 4, 2, 10}, 151},
+            {new Object[]{0.4453, 3.1415}, new Object[]{0.141516, 2.14567834}, 6.80366558},
+            {new Object[]{1, 4, 9}, new Object[]{1, 2, 3}, 36.0}
         });
     }
 
